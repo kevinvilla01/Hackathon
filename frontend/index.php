@@ -81,7 +81,7 @@
                         <style>
                             .embazada {
                                 font-weight: bold; /* Para poner el texto en negritas */
-                                font-size: 1.5em;  /* Ajusta el tamaño de la fuente según sea necesario */
+                                font-size: 1.1em;  /* Ajusta el tamaño de la fuente según sea necesario */
                             }
                         </style>
                         <p class="card-text">Sra de las noticias da a conocer que tuvo una vision de que Selena Gomez estaba EMBARAZADA.</p>
@@ -89,7 +89,7 @@
                     <!-- Votos -->
                     <div class="col-md-1 votos">
                         <button class="btn btn-link" style="font-size: 24px;">↑</button>
-                        <span id="votos">10</span>
+                        <span id="votos">1</span>
                         <button class="btn btn-link" style="font-size: 24px;">↓</button>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                     <!-- Votos -->
                     <div class="col-md-1 votos">
                         <button class="btn btn-link" style="font-size: 24px;">↑</button>
-                        <span id="votos">5</span>
+                        <span id="votos">15</span>
                         <button class="btn btn-link" style="font-size: 24px;">↓</button>
                     </div>
                 </div>

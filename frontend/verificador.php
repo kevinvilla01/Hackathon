@@ -100,13 +100,46 @@
         }
 
         // Función para hacer la predicción
-        function predict(textoProcesado) {
-            // Aquí debes llamar a tu modelo predictivo y obtener la predicción
-            // Por simplicidad, simularemos una respuesta
-            var prediccion = "La noticia es falsa"; // Cambia esto por tu lógica de predicción
+        async function predict(textoProcesado) {
+            // Hacer la llamada al backend
+            const response = await fetch('http://localhost/HACKATHON/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ texto: textoProcesado })
+            });
 
-            return prediccion;
+            if (!response.ok) {
+                throw new Error('Error en la predicción');
+            }
+
+            const data = await response.json();
+            return data.prediccion; // Retorna la predicción del servidor
         }
+
+        // Ejemplo de uso en el evento click
+        document.getElementById("btnVerificar").addEventListener("click", async function() {
+            var texto = document.getElementById("inputTexto").value;
+
+            // Preprocesamiento del texto
+            var textoProcesado = preprocessText(texto);
+
+            try {
+                // Llama al modelo predictivo y obtén la predicción
+                var prediccion = await predict(textoProcesado);
+
+                // Actualiza el contenido del modal con la predicción
+                document.getElementById("resultadoPrediccion").innerText = prediccion;
+
+                // Muestra el modal
+                $('#prediccionModal').modal('show');
+            } catch (error) {
+                console.error(error);
+                document.getElementById("resultadoPrediccion").innerText = "Error al obtener la predicción.";
+                $('#prediccionModal').modal('show');
+            }
+        });
     </script>
 </body>
 </html>
