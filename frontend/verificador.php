@@ -28,7 +28,9 @@
     <div class="verificador">
         <h2>Verificador de Noticias Falsas</h2>
         <p>Pega aquí el texto o la URL que deseas verificar:</p>
-        <textarea class="form-control" id="inputTexto" rows="5" placeholder="Introduce texto o URL aquí..."></textarea>
+        <form action="mandarNot.php" method="POST" >
+            <textarea class="form-control" id="inputTexto" rows="5" placeholder="Introduce texto o URL aquí..."></textarea>
+        </form>
         <button class="btn btn-primary mt-3" id="btnVerificar" type="button">Verificar</button>
     </div>
 
