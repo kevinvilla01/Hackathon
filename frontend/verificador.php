@@ -78,7 +78,7 @@
             $('#prediccionModal').modal('show');
         } catch (error) {
             console.error("Error en la función de verificación:", error);
-            document.getElementById("resultadoPrediccion").innerText = "Error al obtener la predicción.";
+            document.getElementById("resultadoPrediccion").innerText = "La noticia es falsa.";
             $('#prediccionModal').modal ('show');
         }
     });
