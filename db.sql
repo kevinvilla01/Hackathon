@@ -8,4 +8,4 @@ CREATE TABLE notas (
     fecha DATE,
     autor VARCHAR(255),
     link VARCHAR(255)
-)
+);
