@@ -77,7 +77,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-11">
-                        <h5 class="card-title">Selena esta embarazada</h5>
+                        <h5 class="card-title">Selena esta <h5 style="font-weight: bold;" >E M B A R A Z A D A</h5></h5>
                         <p class="card-text">Sra de las noticias da a conocer que tuvo una vision de que Selena Gomez estaba EMBARAZADA.</p>
                     </div>
                     <!-- Votos -->
