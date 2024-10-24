@@ -28,7 +28,7 @@
     <div class="verificador">
         <h2>Verificador de Noticias Falsas</h2>
         <p>Pega aquí el texto o la URL que deseas verificar:</p>
-        <form action="mandarNot.php" method="POST" >
+        <form action="" method="POST">
             <textarea class="form-control" id="inputTexto" rows="5" placeholder="Introduce texto o URL aquí..."></textarea>
         </form>
         <button class="btn btn-primary mt-3" id="btnVerificar" type="button">Verificar</button>
@@ -57,50 +57,56 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/nltk-js@1.0.0/dist/nltk.min.js"></script>
 
     <script>
-        // Simulación de la función de verificación
-        document.getElementById("btnVerificar").addEventListener("click", function() {
-            var texto = document.getElementById("inputTexto").value;
+    // Simulación de la función de verificación
+    document.getElementById("btnVerificar").addEventListener("click", async function() {
+        var texto = document.getElementById("inputTexto").value;
 
-            // Preprocesamiento del texto
-            var textoProcesado = preprocessText(texto);
+        // Preprocesamiento del texto
+        var textoProcesado = preprocessText(texto);
 
+        try {
             // Llama al modelo predictivo y obtén la predicción
-            var prediccion = predict(textoProcesado);
+            var prediccion = await predict(textoProcesado);
 
             // Actualiza el contenido del modal con la predicción
             document.getElementById("resultadoPrediccion").innerText = prediccion;
 
             // Muestra el modal
             $('#prediccionModal').modal('show');
+        } catch (error) {
+            console.error("Error en la función de verificación:", error);
+            document.getElementById("resultadoPrediccion").innerText = "Error al obtener la predicción.";
+            $('#prediccionModal').modal ('show');
+        }
+    });
+
+    // Función para preprocesar el texto
+    function preprocessText(text) {
+        // Tokenización
+        var tokens = text.split(" ");
+
+        // Eliminación de stopwords
+        var stopwords = ["de", "la", "que", "el", "en", "un", "los", "se", "no", "me", "a", "mi", "tu", "te", "ti", "su", "le", "lo", "ma", "mis", "tus", "sus", "nuestro", "nuestra", "nuestros", "vuestra", "vuestras", "vuestros", "mío", "mía", "míos", "mías", "tuyo", "tuya", "tuyos", "tuyas", "suyo", "suya", "suyos", "suyas", "nuestro", "nuestra", "nuestros", "nuestras"];
+        tokens = tokens.filter(function(token) {
+            return !stopwords.includes(token.toLowerCase());
         });
 
-        // Función para preprocesar el texto
-        function preprocessText(text) {
-            // Tokenización
-            var tokens = nltk.word_tokenize(text);
+        // Eliminación de caracteres especiales
+        tokens = tokens.map(function(token) {
+            return token.replace(/[^a-zA-Z0-9]/g, '');
+        });
 
-            // Eliminación de stopwords
-            var stopwords = nltk.corpus.stopwords.words('spanish');
-            tokens = tokens.filter(function(token) {
-                return !stopwords.includes(token.toLowerCase());
-            });
+        // Unión de los tokens
+        var textoProcesado = tokens.join(' ');
 
-            // Eliminación de caracteres especiales
-            tokens = tokens.map(function(token) {
-                return token.replace(/[^a-zA-Z0-9]/g, '');
-            });
+        return textoProcesado;
+    }
 
-            // Unión de los tokens
-            var textoProcesado = tokens.join(' ');
-
-            return textoProcesado;
-        }
-
-        // Función para hacer la predicción
-        async function predict(textoProcesado) {
+    // Función para hacer la predicción
+    async function predict(textoProcesado) {
+        try {
             // Hacer la llamada al backend
             const response = await fetch('http://localhost/HACKATHON/predict', {
                 method: 'POST',
@@ -111,35 +117,17 @@
             });
 
             if (!response.ok) {
-                throw new Error('Error en la predicción');
+                const errorMessage = await response.text(); // Obtener el mensaje de error del servidor
+                throw new Error(`Error en la predicción: ${response.status} ${errorMessage}`);
             }
 
             const data = await response.json();
             return data.prediccion; // Retorna la predicción del servidor
+        } catch (error) {
+            console.error("Error en la función predict:", error);
+            throw error;
         }
-
-        // Ejemplo de uso en el evento click
-        document.getElementById("btnVerificar").addEventListener("click", async function() {
-            var texto = document.getElementById("inputTexto").value;
-
-            // Preprocesamiento del texto
-            var textoProcesado = preprocessText(texto);
-
-            try {
-                // Llama al modelo predictivo y obtén la predicción
-                var prediccion = await predict(textoProcesado);
-
-                // Actualiza el contenido del modal con la predicción
-                document.getElementById("resultadoPrediccion").innerText = prediccion;
-
-                // Muestra el modal
-                $('#prediccionModal').modal('show');
-            } catch (error) {
-                console.error(error);
-                document.getElementById("resultadoPrediccion").innerText = "Error al obtener la predicción.";
-                $('#prediccionModal').modal('show');
-            }
-        });
-    </script>
+    }
+</script>
 </body>
 </html>
