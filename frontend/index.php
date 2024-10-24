@@ -77,7 +77,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-11">
-                        <h5 class="card-title">Selena esta <h5 style="font-weight: bold;" >E M B A R A Z A D A</h5></h5>
+                    <h5 class="card-title">Selena está <span class="embazada">E M B A R A Z A D A</span></h5>
+                        <style>
+                            .embazada {
+                                font-weight: bold; /* Para poner el texto en negritas */
+                                font-size: 1.5em;  /* Ajusta el tamaño de la fuente según sea necesario */
+                            }
+                        </style>
                         <p class="card-text">Sra de las noticias da a conocer que tuvo una vision de que Selena Gomez estaba EMBARAZADA.</p>
                     </div>
                     <!-- Votos -->

@@ -57,15 +57,18 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nltk-js@1.0.0/dist/nltk.min.js"></script>
 
     <script>
         // Simulación de la función de verificación
         document.getElementById("btnVerificar").addEventListener("click", function() {
             var texto = document.getElementById("inputTexto").value;
 
-            // Aquí debes llamar a tu modelo predictivo y obtener la predicción
-            // Por simplicidad, simularemos una respuesta
-            var prediccion = "La noticia es falsa"; // Cambia esto por tu lógica de predicción
+            // Preprocesamiento del texto
+            var textoProcesado = preprocessText(texto);
+
+            // Llama al modelo predictivo y obtén la predicción
+            var prediccion = predict(textoProcesado);
 
             // Actualiza el contenido del modal con la predicción
             document.getElementById("resultadoPrediccion").innerText = prediccion;
@@ -73,6 +76,37 @@
             // Muestra el modal
             $('#prediccionModal').modal('show');
         });
+
+        // Función para preprocesar el texto
+        function preprocessText(text) {
+            // Tokenización
+            var tokens = nltk.word_tokenize(text);
+
+            // Eliminación de stopwords
+            var stopwords = nltk.corpus.stopwords.words('spanish');
+            tokens = tokens.filter(function(token) {
+                return !stopwords.includes(token.toLowerCase());
+            });
+
+            // Eliminación de caracteres especiales
+            tokens = tokens.map(function(token) {
+                return token.replace(/[^a-zA-Z0-9]/g, '');
+            });
+
+            // Unión de los tokens
+            var textoProcesado = tokens.join(' ');
+
+            return textoProcesado;
+        }
+
+        // Función para hacer la predicción
+        function predict(textoProcesado) {
+            // Aquí debes llamar a tu modelo predictivo y obtener la predicción
+            // Por simplicidad, simularemos una respuesta
+            var prediccion = "La noticia es falsa"; // Cambia esto por tu lógica de predicción
+
+            return prediccion;
+        }
     </script>
 </body>
 </html>
