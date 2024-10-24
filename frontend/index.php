@@ -77,8 +77,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-11">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text">Contenido de la publicación 1. Aquí puedes escribir sobre cualquier tema que desees discutir.</p>
+                        <h5 class="card-title">Selena esta embarazada</h5>
+                        <p class="card-text">Sra de las noticias da a conocer que tuvo una vision de que Selena Gomez estaba EMBARAZADA.</p>
                     </div>
                     <!-- Votos -->
                     <div class="col-md-1 votos">
@@ -94,8 +94,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-11">
-                        <h5 class="card-title">Título de la Publicación 2</h5>
-                        <p class="card-text">Contenido de la publicación 2. Comparte tus pensamientos y opiniones.</p>
+                        <h5 class="card-title">En Culiacan, militares y Guardia disparan a hombre y lo detienen</h5>
+                        <p class="card-text">La noche del pasado 7 de octubre, Alexis viajaba en su camioneta en la Colonia Miguel Hidalgo en Culiacán, Sinaloa, cuando militares y elementos de la Guardia Nacional le dispararon y lo detuvieron. Videos y audios obtenidos por Reforma evidencian que las fuerzas de seguridad pretendían matarlo pero se dieron cuenta que eran grabados.</p>
                     </div>
                     <!-- Votos -->
                     <div class="col-md-1 votos">
