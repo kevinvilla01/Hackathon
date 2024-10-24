@@ -108,7 +108,7 @@
     async function predict(textoProcesado) {
         try {
             // Hacer la llamada al backend
-            const response = await fetch('http://localhost/HACKATHON/predict', {
+            const response = await fetch('http://localhost:5000/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
