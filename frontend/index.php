@@ -32,7 +32,7 @@
         <h2>NRF</h2>
         <a class="nav-link" href="#">Perfil</a>
         <a class="nav-link" href="#">Principal</a>
-        <a class="nav-link" href="#">Verificador</a>
+        <a class="nav-link" href="verificador.php">Verificador</a>
         <a class="nav-link" href="#">Preguntas Frecuentes</a>
         <a class="nav-link" href="#">Nosotros</a>
     </div>
