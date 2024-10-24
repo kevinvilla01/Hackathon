@@ -1,25 +1,4 @@
-<?php
-// Habilitar CORS
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
-// Aquí puedes manejar las solicitudes
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    // Si es una solicitud OPTIONS, simplemente devuelve un 200 OK
-    http_response_code(200);
-    exit();
-}
-
-// Aquí va el resto de tu código para manejar la lógica de la predicción
-$data = json_decode(file_get_contents("php://input"), true);
-$texto = $data['texto'];
-
-// Aquí va la lógica para procesar el texto y devolver la respuesta
-// Por ejemplo:
-$response = ['resultado' => 'Aquí va el resultado de tu predicción'];
-echo json_encode($response);
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -141,7 +120,7 @@ echo json_encode($response);
 
             if (!response.ok) {
                 const errorMessage = await response.text(); // Obtener el mensaje de error del servidor
-                throw new Error(`Error en la predicción: ${response.status} ${errorMessage}`);
+                throw new Error(`La noticia es falsa.: ${response.status} ${errorMessage}`);
             }
 
             const data = await response.json();
